@@ -6,13 +6,13 @@ from PIL import Image
 import numpy as np
 
 
-def shred(img, vertical_bins, horizontal_bins, shuffle=True):
-    cols = np.linspace(0, img.shape[1], vertical_bins + 1).astype(int)
-    rows = np.linspace(0, img.shape[0], horizontal_bins + 1).astype(int)
+def shred(img, rows, cols, shuffle=True):
+    x = np.linspace(0, img.shape[1], rows + 1).astype(int)
+    y = np.linspace(0, img.shape[0], cols + 1).astype(int)
     shredded = [
-        (img[rows[j]:rows[j + 1], cols[i]:cols[i + 1]], (j, i))
-        for i in range(vertical_bins)
-        for j in range(horizontal_bins)
+        (img[y[j]:y[j + 1], x[i]:x[i + 1]], (j, i))
+        for i in range(rows)
+        for j in range(cols)
     ]
     if shuffle:
         np.random.shuffle(shredded)
@@ -25,16 +25,18 @@ def parse_args(argv):
     """
     parser = argparse.ArgumentParser('shredder')
     parser.add_argument(
-        '--vertical',
+        '--cols',
+        '-c',
         default=50,
         type=int,
-        help='Number of pieces of paper in the vertical direction. Defaults to 50.'
+        help='Number of pieces of paper in the cols direction. Defaults to 50.'
     )
     parser.add_argument(
-        '--horizontal',
+        '--rows',
+        '-r',
         default=4,
         type=int,
-        help='Number of pieces of paper in the horizontal direction. Defaults to 4.'
+        help='Number of pieces of paper in the rows direction. Defaults to 4.'
     )
     parser.add_argument(
         'image',
@@ -52,9 +54,17 @@ def main(argv=sys.argv):
     args = parse_args(argv[1:])
 
     img = np.array(Image.open(args.image))
-    shredded = shred(img, args.vertical, args.horizontal, shuffle=True)
+    images, indices = shred(img, args.rows, args.cols, shuffle=True)
     with open(args.output, 'wb') as o_:
-        pickle.dump(shredded, o_)
+        pickle.dump({
+                'rows': args.rows,
+                'cols': args.cols,
+                'size': args.rows*args.cols,
+                'images': images,
+                'indices': indices
+            },
+            o_
+        )
 
 
 if __name__ == '__main__':

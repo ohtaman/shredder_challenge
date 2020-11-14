@@ -8,6 +8,7 @@ authors = ["ohtaman <ohtamans@gmail.com>"]
 python = "^3.9"
 Pillow = "^8.0.1"
 numpy = "^1.19.4"
+PuLP = "^2.3.1"
 
 [tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"
