@@ -1,16 +1,18 @@
 import argparse
+import logging
 import pickle
 import sys
 
+import attrdict
 from PIL import Image
 import numpy as np
 
 
 def shred(img, rows, cols, shuffle=True):
-    x = np.linspace(0, img.shape[1], rows + 1).astype(int)
-    y = np.linspace(0, img.shape[0], cols + 1).astype(int)
+    y = np.linspace(0, img.shape[0], rows + 1).astype(int)
+    x = np.linspace(0, img.shape[1], cols + 1).astype(int)
     shredded = [
-        (img[y[j]:y[j + 1], x[i]:x[i + 1]], (j, i))
+        (img[y[i]:y[i + 1], x[j]:x[j + 1]], (i, j))
         for i in range(rows)
         for j in range(cols)
     ]
@@ -52,17 +54,16 @@ def parse_args(argv):
 
 def main(argv=sys.argv):
     args = parse_args(argv[1:])
-
     img = np.array(Image.open(args.image))
     images, indices = shred(img, args.rows, args.cols, shuffle=True)
     with open(args.output, 'wb') as o_:
-        pickle.dump({
-                'rows': args.rows,
-                'cols': args.cols,
-                'size': args.rows*args.cols,
-                'images': images,
-                'indices': indices
-            },
+        pickle.dump(attrdict.AttrDict(
+                rows=args.rows,
+                cols=args.cols,
+                size=args.rows*args.cols,
+                images=images,
+                indices=indices
+            ),
             o_
         )
 
