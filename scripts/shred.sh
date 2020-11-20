@@ -3,7 +3,7 @@
 BASE_DIR=$(cd $(dirname $0)/..; pwd)
 INPUT_DIR=$BASE_DIR/data/img
 OUTPUT_DIR=$BASE_DIR/data/shred
-H_BINS="5 10 30 50 100"
+H_BINS="3 5 10 30 50 100"
 V_BINS="1 2 4"
 
 if [ -d $OUTPUT_DIR ]; then
