@@ -13,6 +13,7 @@ attrdict = "^2.0.1"
 matplotlib = "^3.3.3"
 jupyter = {extras = ["notebook"], version = "^1.0.0"}
 pyqubo = {git = "https://github.com/recruit-communications/pyqubo.git"}
+networkx = "^2.5"
 
 [tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"
