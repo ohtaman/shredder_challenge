@@ -5,15 +5,20 @@ description = ""
 authors = ["ohtaman <ohtamans@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.6"
 Pillow = "^8.0.1"
-numpy = "^1.19.4"
 PuLP = "^2.3.1"
 attrdict = "^2.0.1"
 matplotlib = "^3.3.3"
 jupyter = {extras = ["notebook"], version = "^1.0.0"}
-pyqubo = {git = "https://github.com/recruit-communications/pyqubo.git"}
 networkx = "^2.5"
+numpy = "^1.19.4"
+pyqubo = {git = "https://github.com/recruit-communications/pyqubo.git"}
+dwave-neal = "^0.5.7"
+Cython = "^0.29.21"
+dwave-hybrid = "^0.6.1"
+tqdm = "^4.53.0"
+numba = "^0.51.2"
 
 [tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"
