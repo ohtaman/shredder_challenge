@@ -15,10 +15,7 @@ networkx = "^2.5"
 numpy = "^1.19.4"
 pyqubo = {git = "https://github.com/recruit-communications/pyqubo.git"}
 dwave-neal = "^0.5.7"
-Cython = "^0.29.21"
 dwave-hybrid = "^0.6.1"
-tqdm = "^4.53.0"
-numba = "^0.51.2"
 
 [tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"
