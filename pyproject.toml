@@ -11,11 +11,11 @@ PuLP = "^2.3.1"
 attrdict = "^2.0.1"
 matplotlib = "^3.3.3"
 jupyter = {extras = ["notebook"], version = "^1.0.0"}
-networkx = "^2.5"
+# networkx = "^2.5"
 numpy = "^1.19.4"
-pyqubo = {git = "https://github.com/recruit-communications/pyqubo.git"}
-dwave-neal = "^0.5.7"
-dwave-hybrid = "^0.6.1"
+# pyqubo = {git = "https://github.com/recruit-communications/pyqubo.git"}
+# dwave-neal = "^0.5.7"
+# dwave-hybrid = "^0.6.1"
 
 [tool.poetry.dev-dependencies]
 jupyter = "^1.0.0"
